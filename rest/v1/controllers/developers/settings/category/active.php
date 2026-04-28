@@ -1,0 +1,37 @@
+<?php
+//set http header
+require '../../../../core/header.php';
+
+// use needed functions
+require '../../../../core/functions.php'; 
+
+//use models
+require '../../../../models/developers/settings/category/Category.php';
+// store models into variables 
+
+// checkdatabase connection
+$conn = null;
+$conn = checkDbConnection();      
+// make use of classes for save database
+$val = new Category($conn);
+
+// get payload from frontend
+$body = file_get_contents("php://input");
+$data = json_decode($body, true);
+
+if(array_key_exists('id',$_GET)){
+    //check data if exist and data is required
+    checkPayload($data);
+    $val->category_aid = $_GET['id'];
+    $val->category_is_active = trim($data['isActive']);
+    $val->category_updated = date("Y-m-d H:m:s");
+
+    //validate is id
+    checkId($val->category_aid);
+
+    $query = checkActive($val);
+    http_response_code(200);
+    returnSuccess($val, 'role active', $query);
+}
+//return 404 if end point not available
+checkEndpoint();

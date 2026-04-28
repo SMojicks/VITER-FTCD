@@ -1,0 +1,79 @@
+import React from "react";
+export const urlPath = "http://localhost/react-vite/viter-ftcd-v1";
+export const devNavUrl = "";
+export const devApiUrl = urlPath + "/rest";
+export const apiVersion = "/v1";
+export const setTimezone = "Asia/Manila";
+
+// ROLES VARIABLE
+export const urlDeveloper = "developer";
+
+//DEV API KEY
+export const devKey = "123devkey";
+
+export const isEmptyItem = (item, x = "") => {
+  let result = x;
+
+  if (typeof item !== "undefined" && item !== "") {
+    result = item;
+  }
+  return result;
+};
+
+export const formatDate = (dateVal, val = "", format = "") => {
+  const formatedDate = val;
+  if (typeof dateVal !== "undefined" && dateVal !== "") {
+    // formatting date
+    const event = new Date(dateVal);
+
+    return event.toLocaleString("en", dateOptions(format));
+  }
+  return formatedDate;
+};
+
+export const dateOptions = (format = "") => {
+  let options = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
+  if ((format = "short-date")) {
+    return {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    };
+  }
+  return options;
+};
+
+export const handleEscape = (handleClose) => {
+  React.useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.keyCode === 27) {
+        handleClose();
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  });
+};
+
+// get focus on a button
+export const GetFocus = (id) => {
+  React.useEffect(() => {
+    const obj = document.getElementById(id);
+    obj.focus();
+  }, []);
+};
+// Get current user type/role path for routing and breadcrumbs
+export const getUserType = () => {
+  // If you eventually have multiple user roles (admin, user, etc.) 
+  // and store them in localStorage after login, you can do something like:
+  // const role = localStorage.getItem("user_role");
+  // return `/${role}`;
+
+  // For now, since you are working on the developer side, 
+  // we return the developer base path using your existing variables:
+  return `/${urlDeveloper}`; 
+};
