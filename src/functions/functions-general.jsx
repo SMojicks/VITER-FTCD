@@ -66,6 +66,7 @@ export const GetFocus = (id) => {
     obj.focus();
   }, []);
 };
+
 // Get current user type/role path for routing and breadcrumbs
 export const getUserType = () => {
   // If you eventually have multiple user roles (admin, user, etc.) 
@@ -77,3 +78,4 @@ export const getUserType = () => {
   // we return the developer base path using your existing variables:
   return `/${urlDeveloper}`; 
 };
+
