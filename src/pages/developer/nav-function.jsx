@@ -53,19 +53,11 @@ export const navList = [
     subNavList: [
       {
         label: "Users",
-<<<<<<< HEAD
         path: `${devNavUrl}/${urlDeveloper}/settings/users`,
       },
       {
         label: "Category",
         path: `${devNavUrl}/${urlDeveloper}/settings/category`,
-=======
-        path: `${devNavUrl}/${urlDeveloper}/settings/role`,
-      },
-      {
-        label: "Category",
-        path: `${devNavUrl}/${urlDeveloper}/settings/users`,
->>>>>>> ad4d922c11a9c8efc70aa37d54a4f7ed18d52f53
       },
       {
         label: "Designation",

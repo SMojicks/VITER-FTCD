@@ -5,9 +5,6 @@ import { setIsSearch } from "../store/StoreAction";
 import { StoreContext } from "../store/StoreContext";
 // IMPORTANT: Ensure this path correctly points to where you added getUserType()
 import { getUserType } from "../functions/functions-general"; 
-import { setIsSearch } from "../../store/StoreAction";
-import { StoreContext } from "../../store/StoreContext";
-import { getUserType } from "../helpers/functions-general";
 
 
 const BreadCrumbs = ({ param = "" }) => {
