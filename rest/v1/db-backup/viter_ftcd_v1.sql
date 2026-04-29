@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2026 at 12:30 PM
+-- Generation Time: Apr 29, 2026 at 06:23 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,54 @@ CREATE TABLE `settings_category` (
 --
 
 INSERT INTO `settings_category` (`category_aid`, `category_is_active`, `category_name`, `category_description`, `category_created`, `category_updated`) VALUES
-(5, 1, 'Feeding Program', 'Weekly Community Development Program... ', '2026-04-28 14:04:29', '2026-04-28 14:04:22');
+(5, 1, 'Feeding Program', 'Weekly Community Development Program... ', '2026-04-28 14:04:29', '2026-04-28 14:04:22'),
+(10, 1, 'test', 'test', '2026-04-29 09:04:42', '2026-04-29 09:04:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings_designation`
+--
+
+CREATE TABLE `settings_designation` (
+  `designation_aid` int(11) NOT NULL,
+  `designation_is_active` tinyint(4) NOT NULL,
+  `designation_name` varchar(255) NOT NULL,
+  `designation_category_id` varchar(20) NOT NULL,
+  `designation_created` datetime NOT NULL,
+  `designation_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `settings_designation`
+--
+
+INSERT INTO `settings_designation` (`designation_aid`, `designation_is_active`, `designation_name`, `designation_category_id`, `designation_created`, `designation_updated`) VALUES
+(1, 1, 'seb123', '5', '2026-04-29 09:04:42', '2026-04-29 09:04:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings_notification`
+--
+
+CREATE TABLE `settings_notification` (
+  `notification_aid` int(11) NOT NULL,
+  `notification_is_active` tinyint(4) NOT NULL,
+  `notification_name` varchar(255) NOT NULL,
+  `notification_email` varchar(255) NOT NULL,
+  `notification_phone` varchar(15) NOT NULL,
+  `notification_purpose` varchar(255) NOT NULL,
+  `notification_created` datetime NOT NULL,
+  `notification_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `settings_notification`
+--
+
+INSERT INTO `settings_notification` (`notification_aid`, `notification_is_active`, `notification_name`, `notification_email`, `notification_phone`, `notification_purpose`, `notification_created`, `notification_updated`) VALUES
+(4, 1, 'awd', 'awda', '0912333333', 'For Donation Receipt', '2026-04-29 10:04:13', '2026-04-29 12:04:08');
 
 -- --------------------------------------------------------
 
@@ -101,6 +148,18 @@ ALTER TABLE `settings_category`
   ADD PRIMARY KEY (`category_aid`);
 
 --
+-- Indexes for table `settings_designation`
+--
+ALTER TABLE `settings_designation`
+  ADD PRIMARY KEY (`designation_aid`);
+
+--
+-- Indexes for table `settings_notification`
+--
+ALTER TABLE `settings_notification`
+  ADD PRIMARY KEY (`notification_aid`);
+
+--
 -- Indexes for table `settings_roles`
 --
 ALTER TABLE `settings_roles`
@@ -120,7 +179,19 @@ ALTER TABLE `settings_system`
 -- AUTO_INCREMENT for table `settings_category`
 --
 ALTER TABLE `settings_category`
-  MODIFY `category_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `category_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `settings_designation`
+--
+ALTER TABLE `settings_designation`
+  MODIFY `designation_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `settings_notification`
+--
+ALTER TABLE `settings_notification`
+  MODIFY `notification_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `settings_roles`

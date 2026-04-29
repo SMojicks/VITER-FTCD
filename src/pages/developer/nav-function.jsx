@@ -61,7 +61,7 @@ export const navList = [
       },
       {
         label: "Designation",
-        path: `${devNavUrl}/${urlDeveloper}/settings/department`,
+        path: `${devNavUrl}/${urlDeveloper}/settings/designation`,
       },
       {
         label: "Notification",

@@ -5,17 +5,17 @@
 $conn = null;
 $conn = checkDbConnection();      
 // make use of classes for save database
-$val = new Roles($conn);
+$val = new Notification($conn);
 
 if(array_key_exists("id",$_GET)){
-$val->role_aid = $_GET['id'];
+$val->notification_aid = $_GET['id'];
 
 // VALIDATION
-checkId($val->role_aid);
+checkId($val->notification_aid);
 
 $query = checkDelete($val);
 http_response_code(200);
-returnSuccess($val, "Roles Delete", $query);
+returnSuccess($val, "Notification Delete", $query);
 }
 
 checkEndpoint();

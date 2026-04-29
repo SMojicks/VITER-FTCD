@@ -1,10 +1,12 @@
 <?php 
 //set http header
 require '../../../../core/header.php';
+
 // use needed functions
 require '../../../../core/functions.php'; 
+
 //use models
-require '../../../../models/developers/settings/roles/Roles.php'; 
+require '../../../../models/developers/settings/notification/Notification.php';
 
 
 // get payload from frontend

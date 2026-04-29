@@ -1,6 +1,8 @@
 import { devNavUrl, urlDeveloper } from "../functions/functions-general";
 import DonorList from "../pages/developer/donor-list/DonorList";
 import Category from "../pages/developer/settings/category/Category";
+import Designation from "../pages/developer/settings/designation/Designation";
+import Notification from "../pages/developer/settings/notification/Notification";
 import Roles from "../pages/developer/settings/users/roles/Roles";
 import Systems from "../pages/developer/settings/users/systems/Systems";
 import Users from "../pages/developer/settings/users/Users";
@@ -46,6 +48,22 @@ export const routesDeveloper = [
     element: (
       <>
         <Category />
+      </>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${urlDeveloper}/settings/designation`,
+    element: (
+      <>
+        <Designation />
+      </>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${urlDeveloper}/settings/notification`,
+    element: (
+      <>
+        <Notification />
       </>
     ),
   },

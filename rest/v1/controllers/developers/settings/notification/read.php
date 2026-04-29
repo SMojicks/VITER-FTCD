@@ -4,7 +4,7 @@
 $conn = null;
 $conn = checkDbConnection();      
 // make use of classes for save database
-$val = new Roles($conn);
+$val = new Notification($conn);
 
 if(empty($_GET)){
     $query = checkReadAll($val);
