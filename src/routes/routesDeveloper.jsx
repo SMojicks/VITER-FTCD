@@ -1,5 +1,6 @@
 import { devNavUrl, urlDeveloper } from "../functions/functions-general";
-import DonorList from "../pages/developer/donor-list/DonorList";
+import ChildrenList from "../pages/developer/children-list/ChildrenList";
+import Donor from "../pages/developer/donor/Donor";
 import Category from "../pages/developer/settings/category/Category";
 import Designation from "../pages/developer/settings/designation/Designation";
 import Notification from "../pages/developer/settings/notification/Notification";
@@ -13,7 +14,15 @@ export const routesDeveloper = [
     path: `${devNavUrl}/${urlDeveloper}/`,
     element: (
       <>
-        <DonorList />
+        <Donor />
+      </>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${urlDeveloper}/donor`,
+    element: (
+      <>
+        <Donor />
       </>
     ),
   },
@@ -64,6 +73,14 @@ export const routesDeveloper = [
     element: (
       <>
         <Notification />
+      </>
+    ),
+  },
+  {
+    path: `${devNavUrl}/${urlDeveloper}/children-list`,
+    element: (
+      <>
+        <ChildrenList />
       </>
     ),
   },

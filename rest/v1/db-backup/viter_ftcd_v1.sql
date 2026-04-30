@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2026 at 06:23 AM
+-- Generation Time: Apr 30, 2026 at 08:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,62 @@ SET time_zone = "+00:00";
 --
 -- Database: `viter_ftcd_v1`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `childrenlist`
+--
+
+CREATE TABLE `childrenlist` (
+  `childrenList_aid` int(11) NOT NULL,
+  `childrenList_is_active` tinyint(4) NOT NULL,
+  `childrenList_name` varchar(255) NOT NULL,
+  `childrenList_birthday` datetime NOT NULL,
+  `childrenList_age` int(11) NOT NULL,
+  `childrenList_residency` varchar(255) NOT NULL,
+  `childrenList_limit` double NOT NULL,
+  `childrenList_story` text NOT NULL,
+  `childrenList_created` datetime NOT NULL,
+  `childrenList_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `childrenlist`
+--
+
+INSERT INTO `childrenlist` (`childrenList_aid`, `childrenList_is_active`, `childrenList_name`, `childrenList_birthday`, `childrenList_age`, `childrenList_residency`, `childrenList_limit`, `childrenList_story`, `childrenList_created`, `childrenList_updated`) VALUES
+(5, 1, 'ttttt', '2019-01-29 00:00:00', 7, '', 123, '123', '2026-04-30 13:04:49', '2026-04-30 13:04:58'),
+(6, 1, 'test', '2020-03-04 00:00:00', 6, '1', 123, 'awd', '2026-04-30 13:04:57', '2026-04-30 13:04:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donor`
+--
+
+CREATE TABLE `donor` (
+  `donor_aid` int(11) NOT NULL,
+  `donor_is_active` tinyint(4) NOT NULL,
+  `donor_name` varchar(255) NOT NULL,
+  `donor_email` varchar(255) NOT NULL,
+  `donor_contact` varchar(255) NOT NULL,
+  `donor_address` varchar(255) NOT NULL,
+  `donor_city` varchar(255) NOT NULL,
+  `donor_province` varchar(255) NOT NULL,
+  `donor_country` varchar(255) NOT NULL,
+  `donor_zip` int(10) NOT NULL,
+  `donor_created` datetime NOT NULL,
+  `donor_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `donor`
+--
+
+INSERT INTO `donor` (`donor_aid`, `donor_is_active`, `donor_name`, `donor_email`, `donor_contact`, `donor_address`, `donor_city`, `donor_province`, `donor_country`, `donor_zip`, `donor_created`, `donor_updated`) VALUES
+(1, 0, 'test', 'test@gmail.com', '09369515764', 'Sitio 8', 'San Pablo City', 'Laguna', 'Philippines', 4000, '2026-04-30 14:20:07', '2026-04-30 14:30:07'),
+(2, 1, 'Seb Mojica', 'sebmojica@gmail.com', '09123123123', 'Sitio 8', 'San Pablo City', 'Laguna', 'Philippines', 4000, '2026-04-30 14:29:48', '2026-04-30 14:30:00');
 
 -- --------------------------------------------------------
 
@@ -42,7 +98,8 @@ CREATE TABLE `settings_category` (
 
 INSERT INTO `settings_category` (`category_aid`, `category_is_active`, `category_name`, `category_description`, `category_created`, `category_updated`) VALUES
 (5, 1, 'Feeding Program', 'Weekly Community Development Program... ', '2026-04-28 14:04:29', '2026-04-28 14:04:22'),
-(10, 1, 'test', 'test', '2026-04-29 09:04:42', '2026-04-29 09:04:42');
+(10, 1, 'General Giving', 'General Giving description', '2026-04-29 09:04:42', '2026-04-29 12:04:36'),
+(11, 1, 'test', 'test', '2026-04-29 12:04:42', '2026-04-29 12:04:42');
 
 -- --------------------------------------------------------
 
@@ -64,7 +121,8 @@ CREATE TABLE `settings_designation` (
 --
 
 INSERT INTO `settings_designation` (`designation_aid`, `designation_is_active`, `designation_name`, `designation_category_id`, `designation_created`, `designation_updated`) VALUES
-(1, 1, 'seb123', '5', '2026-04-29 09:04:42', '2026-04-29 09:04:56');
+(1, 1, 'Classroom', '5', '2026-04-29 09:04:42', '2026-04-29 12:04:15'),
+(4, 1, 'Meal For Christmas', '10', '2026-04-29 12:04:50', '2026-04-29 12:04:50');
 
 -- --------------------------------------------------------
 
@@ -88,7 +146,7 @@ CREATE TABLE `settings_notification` (
 --
 
 INSERT INTO `settings_notification` (`notification_aid`, `notification_is_active`, `notification_name`, `notification_email`, `notification_phone`, `notification_purpose`, `notification_created`, `notification_updated`) VALUES
-(4, 1, 'awd', 'awda', '0912333333', 'For Donation Receipt', '2026-04-29 10:04:13', '2026-04-29 12:04:08');
+(4, 1, 'Notification 1', 'notification1@gmail.com', '0912333333', 'For Donation Receipt', '2026-04-29 10:04:13', '2026-04-29 12:04:25');
 
 -- --------------------------------------------------------
 
@@ -142,6 +200,18 @@ INSERT INTO `settings_system` (`system_aid`, `system_is_active`, `system_first_n
 --
 
 --
+-- Indexes for table `childrenlist`
+--
+ALTER TABLE `childrenlist`
+  ADD PRIMARY KEY (`childrenList_aid`);
+
+--
+-- Indexes for table `donor`
+--
+ALTER TABLE `donor`
+  ADD PRIMARY KEY (`donor_aid`);
+
+--
 -- Indexes for table `settings_category`
 --
 ALTER TABLE `settings_category`
@@ -176,22 +246,34 @@ ALTER TABLE `settings_system`
 --
 
 --
+-- AUTO_INCREMENT for table `childrenlist`
+--
+ALTER TABLE `childrenlist`
+  MODIFY `childrenList_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `donor`
+--
+ALTER TABLE `donor`
+  MODIFY `donor_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `settings_category`
 --
 ALTER TABLE `settings_category`
-  MODIFY `category_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `settings_designation`
 --
 ALTER TABLE `settings_designation`
-  MODIFY `designation_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `designation_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `settings_notification`
 --
 ALTER TABLE `settings_notification`
-  MODIFY `notification_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `notification_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `settings_roles`

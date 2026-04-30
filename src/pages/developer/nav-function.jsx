@@ -14,8 +14,8 @@ export const navList = [
   {
     label: "Donor List",
     icon: <FaHandHoldingHeart />,
-    menu: "donor-list",
-    path: `${devNavUrl}/${urlDeveloper}/donor-list`,
+    menu: "donor",
+    path: `${devNavUrl}/${urlDeveloper}/donor`,
     submenu: "",
   },
   {
