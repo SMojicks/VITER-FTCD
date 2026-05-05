@@ -7,6 +7,8 @@ class Systems
     public $system_first_name;
     public $system_last_name;
     public $system_email;
+    public $system_password;
+    public $system_key;
     public $system_role_id;
     public $system_created;
     public $system_updated;
@@ -36,6 +38,8 @@ class Systems
             $sql .= " system_first_name, ";
             $sql .= " system_last_name, ";
             $sql .= " system_email, ";
+            $sql .= " system_password, ";
+            $sql .= " system_key, ";
             $sql .= " system_role_id, ";
             $sql .= " system_created, ";
             $sql .= " system_updated ";
@@ -44,6 +48,8 @@ class Systems
             $sql .= " :system_first_name, ";
             $sql .= " :system_last_name, ";
             $sql .= " :system_email, ";
+            $sql .= " :system_password, ";
+            $sql .= " :system_key, ";
             $sql .= " :system_role_id, ";
             $sql .= " :system_created, ";
             $sql .= " :system_updated ";
@@ -54,6 +60,8 @@ class Systems
                 "system_first_name" => $this->system_first_name,
                 "system_last_name" => $this->system_last_name,
                 "system_email" => $this->system_email,
+                "system_password" => $this->system_password,
+                "system_key" => $this->system_key,
                 "system_role_id" => $this->system_role_id,
                 "system_created" => $this->system_created,
                 "system_updated" => $this->system_updated,
@@ -174,7 +182,37 @@ class Systems
             $query = false;
         } return $query;
     }
-
+    public function setPassword(){
+        try{
+            $sql =" update {$this->tblSettingsSystems} set ";
+            $sql .= " system_key = '', ";
+            $sql .= " system_password = :system_password, ";
+            $sql .= " system_updated = :system_updated ";
+            $sql .= " where system_key = :system_key ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "system_password" => $this->system_password,
+                "system_updated" => $this->system_updated,
+                "system_key" => $this->system_key,
+            ]);
+        }catch(PDOException $e){
+            // returnError($e); turn on when debugging
+            $query = false;
+        } return $query;
+    }
+    public function readKey(){
+        try{
+            $sql =" select * from {$this->tblSettingsSystems} ";
+            $sql .= "where system_key = :system_key ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "system_key" => $this->system_key,
+            ]);
+        }catch(PDOException $e){
+            // returnError($e); turn on when debugging
+            $query = false;
+        } return $query;
+    }
     public function active(){
         try{
             $sql =" update {$this->tblSettingsSystems} set ";

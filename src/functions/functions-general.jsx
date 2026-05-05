@@ -79,3 +79,11 @@ export const getUserType = () => {
   return `/${urlDeveloper}`; 
 };
 
+export const getUrlParam = (id) => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  // const param = urlParams.get(id);
+  // return param;
+  return urlParams;
+};
+
