@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2026 at 08:30 AM
+-- Generation Time: May 07, 2026 at 09:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,8 +45,8 @@ CREATE TABLE `childrenlist` (
 --
 
 INSERT INTO `childrenlist` (`childrenList_aid`, `childrenList_is_active`, `childrenList_name`, `childrenList_birthday`, `childrenList_age`, `childrenList_residency`, `childrenList_limit`, `childrenList_story`, `childrenList_created`, `childrenList_updated`) VALUES
-(5, 1, 'ttttt', '2019-01-29 00:00:00', 7, '', 123, '123', '2026-04-30 13:04:49', '2026-04-30 13:04:58'),
-(6, 1, 'test', '2020-03-04 00:00:00', 6, '1', 123, 'awd', '2026-04-30 13:04:57', '2026-04-30 13:04:11');
+(7, 1, 'Children 1', '2013-02-14 00:00:00', 13, '1', 0, 'Story description test', '2026-04-30 14:04:13', '2026-04-30 14:04:13'),
+(8, 1, 'Children 2', '2016-01-13 00:00:00', 10, '', 100, 'Story description test', '2026-04-30 14:04:35', '2026-04-30 14:04:35');
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,6 @@ CREATE TABLE `donor` (
 --
 
 INSERT INTO `donor` (`donor_aid`, `donor_is_active`, `donor_name`, `donor_email`, `donor_contact`, `donor_address`, `donor_city`, `donor_province`, `donor_country`, `donor_zip`, `donor_created`, `donor_updated`) VALUES
-(1, 0, 'test', 'test@gmail.com', '09369515764', 'Sitio 8', 'San Pablo City', 'Laguna', 'Philippines', 4000, '2026-04-30 14:20:07', '2026-04-30 14:30:07'),
 (2, 1, 'Seb Mojica', 'sebmojica@gmail.com', '09123123123', 'Sitio 8', 'San Pablo City', 'Laguna', 'Philippines', 4000, '2026-04-30 14:29:48', '2026-04-30 14:30:00');
 
 -- --------------------------------------------------------
@@ -158,6 +157,7 @@ CREATE TABLE `settings_roles` (
   `role_aid` int(11) NOT NULL,
   `role_is_active` tinyint(4) NOT NULL,
   `role_name` varchar(128) NOT NULL,
+  `role_code` varchar(50) NOT NULL,
   `role_description` text NOT NULL,
   `role_created` datetime NOT NULL,
   `role_updated` datetime NOT NULL
@@ -167,9 +167,10 @@ CREATE TABLE `settings_roles` (
 -- Dumping data for table `settings_roles`
 --
 
-INSERT INTO `settings_roles` (`role_aid`, `role_is_active`, `role_name`, `role_description`, `role_created`, `role_updated`) VALUES
-(5, 1, 'admin', 'admin description', '2026-04-28 07:04:49', '2026-04-28 07:04:49'),
-(6, 1, 'developer', 'developer description\n', '2026-04-28 07:04:02', '2026-04-28 07:04:02');
+INSERT INTO `settings_roles` (`role_aid`, `role_is_active`, `role_name`, `role_code`, `role_description`, `role_created`, `role_updated`) VALUES
+(21, 1, 'developer', 'r_is_developer', 'developer desc', '2026-05-05 14:05:43', '2026-05-05 14:05:43'),
+(22, 1, 'admin', 'r_is_admin', 'admin desc', '2026-05-05 14:05:49', '2026-05-05 14:05:49'),
+(23, 1, 'viewer', 'r_is_viewer', 'viewer desc', '2026-05-05 14:05:58', '2026-05-05 14:05:58');
 
 -- --------------------------------------------------------
 
@@ -183,6 +184,8 @@ CREATE TABLE `settings_system` (
   `system_first_name` varchar(255) NOT NULL,
   `system_last_name` varchar(255) NOT NULL,
   `system_email` varchar(255) NOT NULL,
+  `system_password` varchar(255) NOT NULL,
+  `system_key` varchar(255) NOT NULL,
   `system_role_id` varchar(20) NOT NULL,
   `system_created` datetime NOT NULL,
   `system_updated` datetime NOT NULL
@@ -192,8 +195,9 @@ CREATE TABLE `settings_system` (
 -- Dumping data for table `settings_system`
 --
 
-INSERT INTO `settings_system` (`system_aid`, `system_is_active`, `system_first_name`, `system_last_name`, `system_email`, `system_role_id`, `system_created`, `system_updated`) VALUES
-(11, 1, 'John 123', 'Doe 123', 'john@gmail.commm', '5', '2026-04-28 14:04:17', '2026-04-28 14:04:00');
+INSERT INTO `settings_system` (`system_aid`, `system_is_active`, `system_first_name`, `system_last_name`, `system_email`, `system_password`, `system_key`, `system_role_id`, `system_created`, `system_updated`) VALUES
+(11, 1, 'John 123', 'Doe 123', 'john@gmail.commm', '', '', '5', '2026-04-28 14:04:17', '2026-04-28 14:04:00'),
+(15, 1, 'Seb', 'Mojica', 'sebastianmojica03@gmail.com', '$2y$10$xhTQB9XIzzfAadJ2g48WwuUTaO5inv..CwKC4kSluwNFd9QQx15E6', '', '21', '2026-05-05 14:05:39', '2026-05-05 14:06:10');
 
 --
 -- Indexes for dumped tables
@@ -249,13 +253,13 @@ ALTER TABLE `settings_system`
 -- AUTO_INCREMENT for table `childrenlist`
 --
 ALTER TABLE `childrenlist`
-  MODIFY `childrenList_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `childrenList_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `donor_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `donor_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `settings_category`
@@ -279,13 +283,13 @@ ALTER TABLE `settings_notification`
 -- AUTO_INCREMENT for table `settings_roles`
 --
 ALTER TABLE `settings_roles`
-  MODIFY `role_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `role_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `settings_system`
 --
 ALTER TABLE `settings_system`
-  MODIFY `system_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `system_aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
